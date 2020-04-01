@@ -1,4 +1,4 @@
-#include <fstream> //ob≥suga pliku .txt
+#include <fstream> //ob≈Çsuga pliku .txt
 #include "auta0.h"
 
 using namespace std;
@@ -16,7 +16,7 @@ bool Auto::wczytaj() {		//wczytuje dane z pliku
 	int aktualny_nr = 1;
 	string linia;
 
-	while (getline(plik, linia)) //(skad,gdzie) 0=nie uda≥o sie pobrac
+	while (getline(plik, linia)) //(skad,gdzie) 0=nie uda≈Ço sie pobrac
 	{
 		if (aktualny_nr == nr_linii);
 		if (aktualny_nr == nr_linii + 1) marka = linia;
@@ -29,7 +29,7 @@ bool Auto::wczytaj() {		//wczytuje dane z pliku
 		if (aktualny_nr == nr_linii + 8) biegi = linia;
 		aktualny_nr++;
 	}
-	cout << "Wczytano prawid≥owowo" << endl;
+	cout << "Wczytano prawid≈Çowowo" << endl;
 	if (!plik.eof() == 1) return true;
 
 	//if(marka != "" && model != "" && silnik != "" && rocznik != NULL && pojemnosc != NULL && moc != NULL && przebieg != NULL && biegi != "")
@@ -85,10 +85,10 @@ void Auto::przepisz() {		//przepisuje dane do konsoli
 	cout << "Model: " << model << endl;
 	cout << "Silnik: " << silnik << endl;
 	cout << "Rocznik: " << rocznik << endl;
-	cout << "PojemnoúÊ: " << pojemnosc << endl;
+	cout << "Pojemno≈õƒá: " << pojemnosc << endl;
 	cout << "Moc: " << moc << endl;
 	cout << "Przebieg: " << przebieg << endl;
-	cout << "Typ skrzyni biegÛw: " << biegi << endl;
+	cout << "Typ skrzyni bieg√≥w: " << biegi << endl;
 	cout << "---------------------------" << endl << endl;
 }
 
@@ -103,33 +103,33 @@ void Auto::dodaj_auto() {		//dodawanie nowego auta
 
 	while ((cout << "Podaj rocznik [RRRR]:" << endl)
 		&& (!(cin >> rocznik) || rocznik < 1885 || rocznik > 2022)) {
-		cout << "To nie jest prawid≥owa data" << endl;
+		cout << "To nie jest prawid≈Çowa data" << endl;
 		cin.clear();
 		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	} //zabezpieczenie przed nieprawid≥owym rokiem
+	} //zabezpieczenie przed nieprawid≈Çowym rokiem
 
-	while ((cout << "Podaj pojemnoúÊ [ccm]:" << endl)
+	while ((cout << "Podaj pojemno≈õƒá [ccm]:" << endl)
 		&& (!(cin >> pojemnosc) || pojemnosc < 1 || pojemnosc > 20000)) {
-		cout << "To nie jest prawid≥owa pojemnoúÊ" << endl;
+		cout << "To nie jest prawid≈Çowa pojemno≈õƒá" << endl;
 		cin.clear();
 		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	} //zabezpieczenie przed nieprawid≥owπ pojemnoúciπ
+	} //zabezpieczenie przed nieprawid≈ÇowƒÖ pojemno≈õciƒÖ
 
 	while ((cout << "Podaj moc [KM]:" << endl)
 		&& (!(cin >> moc) || moc < 1 || moc > 2000)) {
-		cout << "To nie jest prawid≥owa moc" << endl;
+		cout << "To nie jest prawid≈Çowa moc" << endl;
 		cin.clear();
 		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	} //zabezpieczenie przed nieprawid≥owπ mocπ
+	} //zabezpieczenie przed nieprawid≈ÇowƒÖ mocƒÖ
 
 	while ((cout << "Podaj przebieg [km]:" << endl)
 		&& (!(cin >> przebieg) || przebieg < 0 || przebieg > 3000000)) {
-		cout << "To nie jest prawid≥owy przebieg" << endl;
+		cout << "To nie jest prawid≈Çowy przebieg" << endl;
 		cin.clear();
 		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	} //zabezpieczenie przed nieprawid≥owym przebiegiem
+	} //zabezpieczenie przed nieprawid≈Çowym przebiegiem
 
-	cout << "Podaj typ skrzyni biegÛw: [manual / automat]" << endl;
+	cout << "Podaj typ skrzyni bieg√≥w: [manual / automat]" << endl;
 	cin >> biegi;
 
 }
@@ -139,15 +139,15 @@ void Auto::dodaj_auto() {		//dodawanie nowego auta
 			/*
 			sort(b, b + 8);
 
-			cout << endl << "Tablica a posortowana rosnπco:" << endl;
+			cout << endl << "Tablica a posortowana rosnƒÖco:" << endl;
 			for (int i = 0; i < 8; i++) cout << b[i] << endl;
 
 			sort(b, b + 8, greater < int >());
 
-			cout << endl << "Tablica a posortowana malejπco:" << endl;
+			cout << endl << "Tablica a posortowana malejƒÖco:" << endl;
 			for (int i = 0; i < 8; i++) cout << b[i] << endl;
 
-			cout << "Nacisnij 0 aby wrÛciÊ" << endl;
+			cout << "Nacisnij 0 aby wr√≥ciƒá" << endl;
 			cin >> id;
 			if (id == 0) {
 				cout << endl << endl << endl;
@@ -176,7 +176,7 @@ Auto::Auto() {}
 //destruktor
 /*
 Auto::~Auto() {
-	cout << "Czy ja mam co sprzπtaÊ?" << endl;;
+	cout << "Czy ja mam co sprzƒÖtaƒá?" << endl;;
 }
 */
 
