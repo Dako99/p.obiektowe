@@ -30,7 +30,7 @@ public:
 	//void kasuj();         //usuwa dane z pliku
 	void przepisz();      //przepisuje dane do konsoli
 	void dodaj_auto();    //dodawanie nowego auta
-	//void sortowanie();    //sortowanie wed³ug parametru
+	//void sortowanie();    //sortowanie wedÂ³ug parametru
 
 };
 
