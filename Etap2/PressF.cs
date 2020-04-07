@@ -95,7 +95,7 @@ namespace Etap2_Katalog
             strumienZapisu.Close();
             plik.Close();
 
-            //Rejestr.lista.RemoveRange(0, Rejestr.lista.Count());
+            //RemoveRange(0,
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(" ");
             Console.WriteLine("Zapisano!");
