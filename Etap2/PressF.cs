@@ -36,13 +36,11 @@ namespace Etap2_Katalog
 
 
                 int aktualny_nr = 1;
-                string linia;
+                string linia; //= strumienOdczytu.ReadToEnd().ToString() 
+                int nr_linii = (nr_auta - 1) * 8 + 0; //do zmiany
 
-                while ((linia = strumienOdczytu.ReadLine()) != null) //?????????
+                while ((strumienOdczytu.ReadLine()) != null) //?????????
                 {
-                    int nr_linii = (nr_auta - 1) * 8 + 0; //do zmiany
-
-
                     marka = strumienOdczytu.ReadLine();
                     model = strumienOdczytu.ReadLine();
                     silnik = strumienOdczytu.ReadLine();
@@ -65,13 +63,12 @@ namespace Etap2_Katalog
 
 
                     Auto noweAuto = new Auto(marka, model, silnik, rocznik, pojemnosc, moc, przebieg, biegi);
-                    //lista0.Add(noweAuto); check
+                    //lista0.Add(noweAuto); //test
 
                     // mozna zamiennie^
                     //lista0.Add(new Auto(marka, model, silnik, rocznik, pojemnosc, moc, przebieg, biegi));
 
                     tab0 = lista0.ToArray();
-                    Console.WriteLine(lista0.Capacity);
 
                     foreach (Auto item in lista0)
                     {
@@ -83,16 +80,7 @@ namespace Etap2_Katalog
                         Console.WriteLine(item.moc);
                         Console.WriteLine(item.przebieg);
                         Console.WriteLine(item.biegi);
-
                     }
-
-
-                    //ArrayList list0 = new ArrayList();
-                    //lista0.Add(noweAuto);
-
-
-                    //Console.WriteLine(lista0[0].ToString());
-                    //Console.WriteLine(Nazwa);
 
                     //foreach (var item in lista0)
                     //{
@@ -100,6 +88,9 @@ namespace Etap2_Katalog
                     //}
 
 
+                    //ArrayList list0 = new ArrayList();
+
+                    //Console.WriteLine(lista0[0].ToString());
 
                     strumienOdczytu.Close();
                     plik.Close();

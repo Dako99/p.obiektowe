@@ -63,30 +63,29 @@ namespace Etap2_Katalog
                         //foreach()
                         for (int i = 0; i < 10; i++)       //do zmiany
                         {
-
                             Auto.nr_auta = i + 1;
                             PressF.Wczytaj();
                             PressF.Przepisz();
-
-
-                            //for (int i = 0; i <= 10; i++)
-                            //{ //do zmiany
-                            //    PressF.tab0[i].nr_auta = i + 1;
-                            //    PressF.tab0[i].Wypisz();
-                            //    PressF.Wczytaj();
-                            //    PressF.Przepisz();
-                            //}
-
-                            //    for (int i = 0; i <= 10; i++)
-                            //{ //do zmiany
-                            //    tab[i].nr_auta = i + 1;
-                            //    tab[i].wczytaj();
-                            //    tab[i].przepisz();
-                            //}
-
-                            //PressF.lista0[10 - 1].Wypisz();
-
                         }
+
+                        //for (int i = 0; i <= 10; i++)
+                        //{ //do zmiany
+                        //    PressF.tab0[i].nr_auta = i + 1;
+                        //    PressF.tab0[i].Wypisz();
+                        //    PressF.Wczytaj();
+                        //    PressF.Przepisz();
+                        //}
+
+                        //    for (int i = 0; i <= 10; i++)
+                        //{ //do zmiany
+                        //    a[i].nr_auta = i + 1;
+                        //    a[i].wczytaj();
+                        //    a[i].przepisz();
+                        //}
+
+                        //PressF.lista0[10 - 1].Wypisz();
+
+
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(" ");
                         Console.WriteLine("Wczytano prawidłowowo");
