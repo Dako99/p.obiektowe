@@ -1,7 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Generic; //List
 using System.Text;
 using System.IO; //obsługa plików
+using System.Linq;
+using System.Collections;
 
 namespace Etap2_Katalog
 {
@@ -17,25 +19,30 @@ namespace Etap2_Katalog
         public static string biegi;
 
         public static int nr_auta;
+        //public static string Nazwa;
 
+        public static List<Auto> lista0 = new List<Auto>();  //kolekcja (List)
+        public static Auto[] tab0; // = new Auto[8]
 
         //metody
 
-        public static bool Wczytaj()        //wczytuje dane z pliku
+        public static bool Wczytaj()             //wczytuje dane z pliku
         {
-            //Console.WriteLine("GetFullPath('Baza.txt') returns '{0}'", Path.GetFullPath("Baza.txt"));
 
             if (File.Exists("Baza.txt"))
             {//System.IO. ????
                 FileStream plik = new FileStream("Baza.txt", FileMode.Open, FileAccess.Read);
                 StreamReader strumienOdczytu = new StreamReader("Baza.txt");
 
-                int nr_linii = (nr_auta - 1) * 8 + 0; //do zmiany
+
                 int aktualny_nr = 1;
                 string linia;
 
                 while ((linia = strumienOdczytu.ReadLine()) != null) //?????????
                 {
+                    int nr_linii = (nr_auta - 1) * 8 + 0; //do zmiany
+
+
                     marka = strumienOdczytu.ReadLine();
                     model = strumienOdczytu.ReadLine();
                     silnik = strumienOdczytu.ReadLine();
@@ -44,6 +51,7 @@ namespace Etap2_Katalog
                     moc = int.Parse(strumienOdczytu.ReadLine());
                     przebieg = int.Parse(strumienOdczytu.ReadLine());
                     biegi = strumienOdczytu.ReadLine();
+
 
                     if (aktualny_nr == nr_linii + 0) ;
                     if (aktualny_nr == nr_linii + 1) marka = strumienOdczytu.ReadLine();
@@ -55,8 +63,44 @@ namespace Etap2_Katalog
                     if (aktualny_nr == nr_linii + 7) przebieg = int.Parse(strumienOdczytu.ReadLine());
                     if (aktualny_nr == nr_linii + 8) biegi = strumienOdczytu.ReadLine();
 
+
                     Auto noweAuto = new Auto(marka, model, silnik, rocznik, pojemnosc, moc, przebieg, biegi);
-                    aktualny_nr++;
+                    //lista0.Add(noweAuto); check
+
+                    // mozna zamiennie^
+                    //lista0.Add(new Auto(marka, model, silnik, rocznik, pojemnosc, moc, przebieg, biegi));
+
+                    tab0 = lista0.ToArray();
+                    Console.WriteLine(lista0.Capacity);
+
+                    foreach (Auto item in lista0)
+                    {
+                        Console.WriteLine(item.marka);
+                        Console.WriteLine(item.model);
+                        Console.WriteLine(item.silnik);
+                        Console.WriteLine(item.rocznik);
+                        Console.WriteLine(item.pojemnosc);
+                        Console.WriteLine(item.moc);
+                        Console.WriteLine(item.przebieg);
+                        Console.WriteLine(item.biegi);
+
+                    }
+
+
+                    //ArrayList list0 = new ArrayList();
+                    //lista0.Add(noweAuto);
+
+
+                    //Console.WriteLine(lista0[0].ToString());
+                    //Console.WriteLine(Nazwa);
+
+                    //foreach (var item in lista0)
+                    //{
+                    //    Console.WriteLine(item);
+                    //}
+
+
+
                     strumienOdczytu.Close();
                     plik.Close();
                     return true;
@@ -67,20 +111,17 @@ namespace Etap2_Katalog
                 Console.WriteLine("Plik nie istnieje!");
                 return false;
             }
-
             return true;
-            //Console.WriteLine("Wczytano prawidłowowo"); //może jakis if?
         }
 
-
-
-        public static void Zapisz()         //zapisuje dane do pliku
+        public static void Zapisz()             //zapisuje dane do pliku
         {
-
             FileStream plik = new FileStream("Baza.txt", FileMode.Append, FileAccess.Write);
-            //plik.Seek(0, SeekOrigin.End);
+            plik.Seek(0, SeekOrigin.End);
             StreamWriter strumienZapisu = new StreamWriter(plik);
 
+            // for (int i = 0; i < lista0.Count; i++)
+            //{
             strumienZapisu.WriteLine("add");
             strumienZapisu.WriteLine(marka);
             strumienZapisu.WriteLine(model);
@@ -90,22 +131,32 @@ namespace Etap2_Katalog
             strumienZapisu.WriteLine(moc);
             strumienZapisu.WriteLine(przebieg);
             strumienZapisu.WriteLine(biegi);
+            // }
 
+
+            Console.WriteLine(" ");
+            Console.WriteLine("Dodanych aut:");
+            for (int i = 0; i < lista0.Count; i++)
+            {
+                Console.Write("add{0,-4}", i + 1);
+                Console.WriteLine(" ");
+            }
 
             strumienZapisu.Close();
             plik.Close();
 
-            //RemoveRange(0,
+            lista0.RemoveRange(0, lista0.Count());
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(" ");
             Console.WriteLine("Zapisano!");
+            Console.WriteLine(" ");
             Console.ResetColor();
-
         }
 
 
-        public static void Przepisz()
-        {       //przepisuje dane do konsoli
+        public static void Przepisz()           //przepisuje dane do konsoli
+        {
+
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("---------------------------");
             Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -119,8 +170,9 @@ namespace Etap2_Katalog
             Console.WriteLine("Typ skrzyni biegów:{0} ", biegi);
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("---------------------------");
-
+            Console.ResetColor();
         }
+
 
         public static void Dodaj_auto()
         {
@@ -146,9 +198,28 @@ namespace Etap2_Katalog
             Console.WriteLine("Podaj typ skrzyni biegów [maual / automat]:");
             biegi = Console.ReadLine();
 
+            Auto noweAuto = new Auto(marka, model, silnik, rocznik, pojemnosc, moc, przebieg, biegi);
+            lista0.Add(noweAuto);
+        }
+
+
+        public static void Usun_auto()
+        {
+            int nr_usu;
+            do
+            {
+                Console.WriteLine("Podaj numer samochodu do usunięcia: ");
+                nr_usu = Convert.ToInt32(Console.ReadLine());
+                lista0.RemoveAt(nr_usu - 1);        //?
+                if (nr_usu < 0 || nr_usu > lista0.Count)
+                {
+                    Console.WriteLine("Nieprawidłowy numer");
+
+                }
+            } while (nr_usu > 0 && nr_usu < lista0.Count);
+            Console.WriteLine("Usunięto auto nr {0}", nr_usu);
         }
 
 
     }
 }
-

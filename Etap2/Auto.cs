@@ -18,11 +18,16 @@ namespace Etap2_Katalog
 
         public static int nr_auta;
 
-        //metody???
 
+        //przeciazenie / przepełnienie operatora
+        //public string Nazwa { get; set; }
+        //public override string ToString()
+        //{
+        //    return Nazwa;
+        //}
+        // // Nazwa = marka;
 
-        //konstruktor [zawsze]
-        //domyślny
+        //konstruktor domyślny 
 
         //public Auto()
         //{
@@ -35,9 +40,10 @@ namespace Etap2_Katalog
         //    biegi = "nieznana";
         //}
 
-        //narzucony
+        //konstruktor narzucony
         public Auto(string _marka, string _model, string _silnik, int _rocznik, int _pojemnosc, int _moc, int _przebieg, string _biegi)
         {
+            
             marka = _marka;
             model = _model;
             silnik = _silnik;
@@ -49,5 +55,12 @@ namespace Etap2_Katalog
         }
         //destruktor
         ~Auto() { }
+
+        public void Wypisz()
+        {
+            System.Console.WriteLine(marka, model, silnik, rocznik, pojemnosc, moc, przebieg, biegi);
+        }
+
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Etap2_Katalog
 {
@@ -6,25 +7,23 @@ namespace Etap2_Katalog
     {
         //public static int nr_auta;
 
-        static void Main() //string[] args ??
+        static void Main() //??string[] args??
         {
-
             int nr_auta;
-            int[] tablica = new int[30];
+            Auto[] tab0;
 
             while (true)
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("MENU GŁÓWNE");
-                Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("1. Dodaj nowe auto");
                 Console.WriteLine("2. Przeglądaj cały katalog");
                 Console.WriteLine("3. Szukaj auta po ID");
                 Console.WriteLine("4. /Usuwanie aut");
-                Console.WriteLine("5. /Sorotowanie");
-                Console.WriteLine("6.");
+                Console.WriteLine("5. Sorotowanie aut po parametrach");
+                Console.WriteLine("6. ?");
                 Console.WriteLine(" ");
                 Console.WriteLine(" ");
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -54,19 +53,39 @@ namespace Etap2_Katalog
                     case ConsoleKey.D2:
 
                         Console.Clear();
-                        for (int i = 0; i <= 10; i++)       //do zmiany
-                        {
-                            nr_auta = i + 1;
-                            PressF.Wczytaj();
-                            if (PressF.Wczytaj())
-                            {
-                                PressF.Przepisz();
-                            }
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("Katalog samochodów:");
+                        Console.WriteLine("  ");
+                        Console.ResetColor();
 
-                            //Console.WriteLine("There were {0} lines.", aktualny_nr);
-                            //tablica[i].nr_auta = i + 1;
-                            //tablica[i].wczytaj();
-                            //tablica[i].przepisz();
+                        PressF.Wczytaj();
+                        int z = PressF.lista0.Count;
+                        //foreach()
+                        for (int i = 0; i < 10; i++)       //do zmiany
+                        {
+
+                            Auto.nr_auta = i + 1;
+                            PressF.Wczytaj();
+                            PressF.Przepisz();
+
+
+                            //for (int i = 0; i <= 10; i++)
+                            //{ //do zmiany
+                            //    PressF.tab0[i].nr_auta = i + 1;
+                            //    PressF.tab0[i].Wypisz();
+                            //    PressF.Wczytaj();
+                            //    PressF.Przepisz();
+                            //}
+
+                            //    for (int i = 0; i <= 10; i++)
+                            //{ //do zmiany
+                            //    tab[i].nr_auta = i + 1;
+                            //    tab[i].wczytaj();
+                            //    tab[i].przepisz();
+                            //}
+
+                            //PressF.lista0[10 - 1].Wypisz();
+
                         }
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(" ");
@@ -79,22 +98,28 @@ namespace Etap2_Katalog
 
 
                     case ConsoleKey.D3:
-                        //PressF.SzukajAutoPoNr();
 
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("Podaj ID samochodu");
+                        Console.WriteLine("Nacisnij 0 aby wrócić");
+                        Console.WriteLine(" ");
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
 
                         if (Console.ReadKey().Key != ConsoleKey.D0)
                         {
-                            Console.Clear();
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Console.WriteLine("Podaj ID samochodu");
-                            Console.WriteLine("Nacisnij 0 aby wrócić");
-                            Console.WriteLine(" ");
-                            Console.ForegroundColor = ConsoleColor.DarkCyan;
-
                             string id = Console.ReadLine();
                             //tablica[id].nr_auta = id;
                             //tablica[id].wczytaj();
                             //tablica[id].przepisz();
+
+
+
+
+                            //PressF.lista0.Count();
+
+                            Console.Write("{0,-4}", id);
+                            //PressF.lista0[Int.Parse(id)].Wypisz();Dod
                         }
                         else
                         {
@@ -105,14 +130,20 @@ namespace Etap2_Katalog
 
 
                     case ConsoleKey.D4:
+
                         Console.Clear();
-                        //PressF.UsuwanieAuta();
-                        //Console.WriteLine("Naciśnij klawisz, aby kontynuować");
-                        //Console.ReadLine();
+                        PressF.Przepisz();
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Nacisnij 0 aby wrócić");
+                        Console.WriteLine(" ");
+                        PressF.Usun_auto();
+                        Console.WriteLine("Naciśnij klawisz, aby kontynuować");
+                        Console.ReadLine();
                         break;
 
 
                     case ConsoleKey.D5:
+
                         //PressF.Sortowanie();
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -137,49 +168,56 @@ namespace Etap2_Katalog
                         {
                             case ConsoleKey.D1:
                                 Console.WriteLine("1");
-                                //sort(wgMarki);
+                                //sort wgMarki
+                                PressF.lista0 = PressF.lista0.OrderBy(p => p.marka).ToList();
                                 Console.WriteLine("Posortowano");
                                 Console.WriteLine("Naciśnij klawisz, aby kontynuować");
                                 Console.ReadKey();
                                 break;
                             case ConsoleKey.D2:
                                 Console.WriteLine("2");
-                                //sort(wgModelu);
+                                //sort wgModelu
+                                PressF.lista0 = PressF.lista0.OrderBy(p => p.model).ToList();
                                 Console.WriteLine("Posortowano");
                                 Console.WriteLine("Naciśnij klawisz, aby kontynuować");
                                 Console.ReadKey();
                                 break;
                             case ConsoleKey.D3:
                                 Console.WriteLine("3");
-                                //sort(wgRocznika);
+                                //sort wgRocznika
+                                PressF.lista0 = PressF.lista0.OrderBy(p => p.rocznik).ToList();
                                 Console.WriteLine("Posortowano");
                                 Console.WriteLine("Naciśnij klawisz, aby kontynuować");
                                 Console.ReadKey();
                                 break;
                             case ConsoleKey.D4:
                                 Console.WriteLine("4");
-                                //sort(wgPojemnosci);
+                                //sort wgPojemnosc
+                                PressF.lista0 = PressF.lista0.OrderBy(p => p.marka).ToList();
                                 Console.WriteLine("Posortowano");
                                 Console.WriteLine("Naciśnij klawisz, aby kontynuować");
                                 Console.ReadKey();
                                 break;
                             case ConsoleKey.D5:
                                 Console.WriteLine("5");
-                                //sort(wgMocy);
+                                //sort wgMocy
+                                PressF.lista0 = PressF.lista0.OrderBy(p => p.moc).ToList();
                                 Console.WriteLine("Posortowano");
                                 Console.WriteLine("Naciśnij klawisz, aby kontynuować");
                                 Console.ReadKey();
                                 break;
                             case ConsoleKey.D6:
                                 Console.WriteLine("6");
-                                //sort(wgPrzebiegu);
+                                //sort wgPrzebiegu
+                                PressF.lista0 = PressF.lista0.OrderBy(p => p.przebieg).ToList();
                                 Console.WriteLine("Posortowano");
                                 Console.WriteLine("Naciśnij klawisz, aby kontynuować");
                                 Console.ReadKey();
                                 break;
                             case ConsoleKey.D7:
                                 Console.WriteLine("7");
-                                //sort(wgSkrzyni);
+                                //sort wgSkrzyni
+                                PressF.lista0 = PressF.lista0.OrderBy(p => p.biegi).ToList();
                                 Console.WriteLine("Posortowano");
                                 Console.WriteLine("Naciśnij klawisz, aby kontynuować");
                                 Console.ReadKey();
@@ -197,18 +235,25 @@ namespace Etap2_Katalog
 
 
                     case ConsoleKey.D6:
-                        //PressF.();
 
                         //KOT
-                        Console.WriteLine("        | \\_/ |");
-                        Console.WriteLine("       /  @ @ \\");
-                        Console.WriteLine("      ( > o < )");
-                        Console.WriteLine("       `>>x<<' ");
-                        Console.WriteLine("       /  O  \\ ");
+                        do
+                        {
+                            Console.WriteLine("                 ");
+                            Console.WriteLine("        | \\_/ | ");
+                            Console.WriteLine("       /  @ @ \\ ");
+                            Console.WriteLine("      ( > o < )  ");
+                            Console.WriteLine("       `>>x<<'   ");
+                            Console.WriteLine("       /  O  \\  ");
+                            Console.WriteLine("                 ");
 
-                        Console.ReadLine();
+                            Console.WriteLine("Nacisnij 0 aby wrócić");
+                            Console.WriteLine(" ");
+                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        } while (Console.ReadKey().Key != ConsoleKey.D0);
+
+                        Console.Clear();
                         break;
-
 
                     case ConsoleKey.D7:
                         //PressF.();
@@ -220,7 +265,6 @@ namespace Etap2_Katalog
 
                     default:
                         break;
-
                 }
             }
         }
